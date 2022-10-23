@@ -7,6 +7,9 @@ export default function Loader() {
             visible={true}
             height="80"
             width="80"
+            display="block"
+            justify-content="center"
+            padding-right="auto"
             ariaLabel="blocks-loading"
             wrapperStyle={{}}
             wrapperClass="blocks-wrapper"
