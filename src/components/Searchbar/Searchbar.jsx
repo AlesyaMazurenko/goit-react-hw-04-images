@@ -1,46 +1,62 @@
-//mport { toContainHTML } from "@testing-library/jest-dom/dist/matchers";
 import { Component } from "react";
+import './SearchBar.css';
+import { toast } from 'react-toastify';
+import propTypes from 'prop-types';
+import { ImSearch } from 'react-icons/im';
 
-export default class SearchBar extends Component {
+export class SearchBar extends Component {
     state = {
         imagesName: '',
     }
 
-    handleSubmit = event => {
+    changeHandler = (event) => {
+         /*Универсальной метод сбора введённых данных */
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value.toLowerCase(),
+        })
+     }
+
+    submitHandler = event => {
         event.preventDefault();
 
         if (this.state.imagesName.trim() === '') {
-            alert('Введите строку поиска')
+            toast.warning('Введите строку поиска');
             return;
         }
-        //передпсем ищ APP пропс             
-        this.props.onSubmit(this.state.imagesName);
+            // передпсем ищ APP пропс             
+        this.props.onSubmit(this.state.imagesName); /*Передаём значение в App */
         this.setState({ imagesName: '' });
-    };
-
-    handleSaerchChange = event => {
-        this.setState({ imagesName: event.currentTarget.value.toLowerCase() })
     };
 
     render() {
         return (
             <header className="searchbar">
-                <form class="form" onSubmit={this.handleSubmit}>
-                    <button type="submit" class="button">
-                        <span class="button-label">Search</span>
+                <form className='searchForm' onSubmit={this.submitHandler}>
+                    <button type="submit" className="searchForm-button">
+                          <ImSearch size="24px" />
+                        <span className='searchForm-button-label'>Search</span>
                     </button>
                     <input
-                        class="input"
+                        className="searchForm-input"
                         type="text"
-                        autocomplete="off"
-                        autofocus
+                        autoComplete="off"
+                        autoFocus
                         placeholder="Search images and photos"
-                        onChange={this.handleSaerchChange}
+                        name="imagesName"
+                        value={this.state.imagesName}
+                        onChange={this.changeHandler}
                     />
                 </form>
-            </header>       
+            </header>
         )
     }
+    
 }
 
+
+SearchBar.propTypes = {
+    onSubmit: propTypes.func,
+    // onChange: propTypes.func,
+}
 
