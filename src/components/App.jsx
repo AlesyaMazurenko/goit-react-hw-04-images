@@ -116,7 +116,7 @@ export default class App extends Component {
   
   
   render() {
-    const { images, error, loading, imagesName, page, modalIsOpen, modalLink } = this.state;
+    const { images, error, loading, imagesName, modalIsOpen, modalLink } = this.state;
     const isImages = Boolean(images.length); 
     const isLoadMore = (images.length % 12 === 0) ? true : false ;
     return (
