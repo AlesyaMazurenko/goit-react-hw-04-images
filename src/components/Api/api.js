@@ -23,15 +23,3 @@ export const getImages = async (imagesName, page) => {
     }
     
 };
-
-
-
-// const instance = axios.create({
-//     baseURL: BASE_URL,
-//     params: {
-//         key: KEY,
-//         per_page: PAGE_LIMIT,
-//         orientation: 'horizontal',
-//         image_type: 'photo',
-//     },
-// });
